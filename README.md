@@ -25,9 +25,9 @@ pushd $ALTEL_SOURCE
 git checkout build_gcc48 #or master?
 popd
 
-git clone https://github.com/jkvas/eudaq $AHCAL_SOURCE
+git clone https://github.com/jkvas/eudaq_ahcal $AHCAL_SOURCE
 pushd $AHCAL_SOURCE
-git checkout Testbeam_202008
+git checkout master
 popd
 
 mkdir -pv ${BUILD_DIR}/${EUDAQ_SOURCE}
