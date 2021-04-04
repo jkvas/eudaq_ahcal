@@ -1,0 +1,16 @@
+# - Config file for the FooBar package
+# It defines the following variables
+#  ALPIDE_INCLUDE_DIRS - include directories for FooBar
+#  ALPIDE_LIBRARIES    - libraries to link against
+
+# Compute paths
+get_filename_component(AHCAL_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+get_filename_component(AHCAL_INSTALL_DIR "${AHCAL_CMAKE_DIR}" PATH)
+
+set(AHCAL_INCLUDE_DIRS ${AHCAL_INSTALL_DIR}/include)
+set(AHCAL_LIBRARIES_DIRS ${AHCAL_INSTALL_DIR}/lib)
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+include("${AHCAL_CMAKE_DIR}/ahcalTargets.cmake")
+
+set(AHCAL_LIBRARIES "@CONF_AHCAL_LIBRARIES@")
