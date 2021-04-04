@@ -15,20 +15,26 @@ BUILD_DIR=`pwd`/build
 # final installation
 INSTALL_DIR=`pwd`/install
 
-git clone https://www.github.com/eudaq/eudaq $EUDAQ_SOURCE
-pushd $EUDAQ_SOURCE
-git checkout master #v2.4.4
-popd
+if [ ! -d ${EUDAQ_SOURCE} ]; then
+    git clone https://www.github.com/eudaq/eudaq $EUDAQ_SOURCE
+    pushd $EUDAQ_SOURCE
+    git checkout master #v2.4.4
+    popd
+fi
 
-git clone https://github.com/eyiliu/altel_eudaq $ALTEL_SOURCE
-pushd $ALTEL_SOURCE
-git checkout build_gcc48 #or master?
-popd
+if [ ! -d ${ALTEL_SOURCE} ] ; then
+    git clone https://github.com/eyiliu/altel_eudaq $ALTEL_SOURCE
+    pushd $ALTEL_SOURCE
+    git checkout build_gcc48 #or master?
+    popd
+fi
 
-git clone https://github.com/jkvas/eudaq_ahcal $AHCAL_SOURCE
-pushd $AHCAL_SOURCE
-git checkout master
-popd
+if [ ! -d ${AHCAL_SOURCE} ] ; then
+    git clone https://github.com/jkvas/eudaq_ahcal $AHCAL_SOURCE
+    pushd $AHCAL_SOURCE
+    git checkout master
+    popd
+fi
 
 mkdir -pv ${BUILD_DIR}/${EUDAQ_SOURCE}
 pushd ${BUILD_DIR}/${EUDAQ_SOURCE}
