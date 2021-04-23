@@ -1,0 +1,22 @@
+# if(NOT EUDAQ_BUILD_EXECUTABLE)
+#   message(STATUS "Disable the building of main EUDAQ executables (EUDAQ_BUILD_EXECUTABLE=OFF)")
+#   return()
+# endif()
+
+# Get all source files to be compiled as executables: 
+FILE(GLOB TARGET_FILES "src/*.cxx")
+set(EUDAQ_LIBRARIES eudaq::core)
+
+FOREACH(TFILE ${TARGET_FILES})
+  GET_FILENAME_COMPONENT(TNAME ${TFILE} NAME_WE)
+  MESSAGE(STATUS "Building device ${TNAME}")
+  MESSAGE(STATUS "Building file ${TFILE}")
+  ADD_EXECUTABLE(${TNAME} ${TFILE})
+  TARGET_LINK_LIBRARIES(${TNAME} ${EUDAQ_LIBRARIES})
+  LIST(APPEND INSTALL_TARGETS ${TNAME})
+ENDFOREACH()
+
+install(TARGETS ${INSTALL_TARGETS}
+  DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
